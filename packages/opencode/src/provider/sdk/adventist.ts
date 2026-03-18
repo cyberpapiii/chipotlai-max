@@ -158,6 +158,14 @@ class AdventistLanguageModel implements LanguageModelV2 {
     
     const stream = new ReadableStream<LanguageModelV2StreamPart>({
       async start(controller) {
+        const textPartId = generateId()
+        
+        // Emit text-start
+        controller.enqueue({
+          type: "text-start",
+          id: textPartId,
+        } as any)
+
         let buffer = ""
         try {
           while (true) {
@@ -184,7 +192,7 @@ class AdventistLanguageModel implements LanguageModelV2 {
                   if (data.event === "agent_message" && data.answer) {
                     controller.enqueue({
                       type: "text-delta",
-                      id: generateId(),
+                      id: textPartId,
                       delta: data.answer,
                     })
                   }
