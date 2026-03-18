@@ -30,6 +30,7 @@ import { createOpenAI } from "@ai-sdk/openai"
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible"
 import { createOpenRouter, type LanguageModelV2 } from "@openrouter/ai-sdk-provider"
 import { createOpenaiCompatible as createGitHubCopilotOpenAICompatible } from "./sdk/copilot"
+import { createAdventist } from "./sdk/adventist"
 import { createXai } from "@ai-sdk/xai"
 import { createMistral } from "@ai-sdk/mistral"
 import { createGroq } from "@ai-sdk/groq"
@@ -134,6 +135,7 @@ export namespace Provider {
       baseURL: "http://localhost:3000/v1",
       apiKey: "burrito-2026",
     }),
+    adventist: () => createAdventist(),
   }
 
   type CustomModelLoader = (sdk: any, modelID: string, options?: Record<string, any>) => Promise<any>
@@ -529,6 +531,12 @@ export namespace Provider {
         options: {
           apiKey: "burrito-2026",
         },
+      }
+    },
+    async adventist() {
+      return {
+        autoload: true,
+        options: {},
       }
     },
     gitlab: async (input) => {
@@ -1111,6 +1119,46 @@ export namespace Provider {
               reasoning: false,
               attachment: false,
               toolcall: true,
+              input: { text: true, audio: false, image: false, video: false, pdf: false },
+              output: { text: true, audio: false, image: false, video: false, pdf: false },
+              interleaved: false,
+            },
+            cost: { input: 0, output: 0, cache: { read: 0, write: 0 } },
+            limit: { context: 8192, output: 4096 },
+            options: {},
+            headers: {},
+            release_date: "",
+            variants: {},
+          },
+        },
+      }
+    }
+
+    // Inject Adventist IA provider
+    if (!disabled.has(ProviderID.adventist)) {
+      providers["adventist"] = {
+        id: ProviderID.make("adventist"),
+        name: "Adventist IA",
+        source: "custom",
+        env: [],
+        options: {},
+        models: {
+          "adventist-ia": {
+            id: ModelID.make("adventist-ia"),
+            providerID: ProviderID.make("adventist"),
+            name: "Adventist IA",
+            family: "",
+            api: {
+              id: "adventist-ia",
+              url: "https://ia.adventistas.org/api/chat",
+              npm: "adventist",
+            },
+            status: "active",
+            capabilities: {
+              temperature: false,
+              reasoning: false,
+              attachment: false,
+              toolcall: false,
               input: { text: true, audio: false, image: false, video: false, pdf: false },
               output: { text: true, audio: false, image: false, video: false, pdf: false },
               interleaved: false,
