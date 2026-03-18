@@ -143,6 +143,7 @@ class AdventistLanguageModel implements LanguageModelV2 {
       content: [{ type: "text", text }],
       finishReason: "stop",
       usage: { promptTokens: 0, completionTokens: 0 } as any,
+      warnings: [],
     } as any
   }
 
@@ -171,6 +172,12 @@ class AdventistLanguageModel implements LanguageModelV2 {
           while (true) {
             const { done, value } = await reader.read()
             if (done) {
+              // Emit text-end before finish
+              controller.enqueue({
+                type: "text-end",
+                id: textPartId,
+              } as any)
+
               controller.enqueue({
                 type: "finish",
                 finishReason: "stop",
@@ -209,6 +216,7 @@ class AdventistLanguageModel implements LanguageModelV2 {
     return {
       stream,
       response: { headers: Object.fromEntries(response.headers.entries()) },
+      warnings: [],
     } as any
   }
 }
