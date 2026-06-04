@@ -46,6 +46,39 @@ cd chipotle-llm-provider && npm install && npm run dev
 bun run dev
 ```
 
+## Building a Single Binary
+
+Build a standalone binary for your current platform (faster, fewer deps):
+
+```bash
+cd packages/opencode
+bun run build -- --single
+```
+
+The binary is output to `packages/opencode/dist/chipotlai-<os>-<arch>/bin/`.
+
+### Add to PATH
+
+**Linux / macOS:**
+
+```bash
+# Add to your shell config (~/.bashrc, ~/.zshrc, etc.)
+export PATH="$PATH:/path/to/chipotlai-max/packages/opencode/dist/chipotlai-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)/bin"
+```
+
+**Windows (PowerShell):**
+
+```powershell
+# Add to user PATH (run as Administrator)
+[Environment]::SetEnvironmentVariable(
+  "Path",
+  [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\path\to\chipotlai-max\packages\opencode\dist\chipotlai-windows-x64\bin",
+  "User"
+)
+```
+
+After adding to PATH, run `chipotlai` from anywhere.
+
 ## Configuration
 
 Chipotlai Max comes pre-configured with:
