@@ -59,25 +59,21 @@ The binary is output to `packages/opencode/dist/chipotlai-<os>-<arch>/bin/`.
 
 ### Add to PATH
 
+The binary is named `opencode` by default. Copy it to a directory already on your PATH and rename to `chipotlai`:
+
 **Linux / macOS:**
 
 ```bash
-# Add to your shell config (~/.bashrc, ~/.zshrc, etc.)
-export PATH="$PATH:/path/to/chipotlai-max/packages/opencode/dist/chipotlai-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)/bin"
+cp packages/opencode/dist/chipotlai-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)/bin/opencode ~/.local/bin/chipotlai
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-# Add to user PATH (run as Administrator)
-[Environment]::SetEnvironmentVariable(
-  "Path",
-  [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\path\to\chipotlai-max\packages\opencode\dist\chipotlai-windows-x64\bin",
-  "User"
-)
+copy "packages\opencode\dist\chipotlai-windows-x64\bin\opencode" "$env:USERPROFILE\.local\bin\chipotlai.exe"
 ```
 
-After adding to PATH, run `chipotlai` from anywhere.
+Make sure the target directory (`~/.local/bin`) is in your PATH. Then run `chipotlai` from anywhere.
 
 ## Configuration
 
