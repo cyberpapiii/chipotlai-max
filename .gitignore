@@ -34,3 +34,68 @@ logs/
 packages/storybook/debug-storybook.log
 *.bun-build
 tsconfig.tsbuildinfo
+
+# Chipotlai-Max: amazon-rufus proxy + TUI driving scratch
+# All ad-hoc test/driver scripts start with `_`; let them stay local.
+agent-remote/_*.py
+agent-remote/_*.json
+agent-remote/_*.txt
+agent-remote/_*.err
+agent-remote/_*.out
+agent-remote/_*.log
+agent-remote/_*.log.err
+agent-remote/_*.png
+# Scratch / archive folders created during amazon-rufus dev
+agent-remote/_archive_*/
+agent-remote/_scratch_archive_*/
+agent-remote/_final_results/
+agent-remote/__pycache__/
+# Captured Amazon session cookies + proxy logs (do NOT commit session)
+agent-remote/.amazon-rufus-session.json
+agent-remote/.amazon-rufus-proxy.log
+# Edge / launcher / proxy logs that landed in agent-remote
+agent-remote/edge-err.txt
+agent-remote/edge-launch2.log
+agent-remote/edge-version.txt
+agent-remote/launcher.log
+agent-remote/launcher.log.err
+agent-remote/launcher2.log
+agent-remote/launcher2.log.err
+agent-remote/proxy-chain.log
+agent-remote/proxy-chain.log.err
+agent-remote/proxy-fresh.log
+agent-remote/proxy-fresh.log.err
+agent-remote/proxy-saved.log
+agent-remote/proxy-saved.log.err
+agent-remote/proxy-x.log
+agent-remote/proxy-x.log.err
+agent-remote/v2_run1.json
+# Driver / test screenshots taken during TUI end-to-end runs
+agent-remote/amazon_state.png
+agent-remote/launcher_done.png
+agent-remote/launcher_final.png
+agent-remote/now.png
+agent-remote/screenshot.png
+agent-remote/signed_in.png
+agent-remote/state1.png
+agent-remote/state_now.png
+agent-remote/tui*.png
+
+# Chipotlai-Max: root-level artifacts from amazon-rufus dev
+# CDP driver logs
+/cdp-err.txt
+/cdp-out.txt
+/cmds.jsonl
+# TUI driving screenshots
+/ctrl-1.png
+/screen-clean.png
+/screen-current.png
+/screen-launcher-ok.png
+/screen-proof.png
+/screen-tui-front.png
+/screen.png
+/screen2.png
+/screen3.png
+/screen4.png
+# Stub leftover from the sign-in experiment (env-var-based, not used)
+/_drive_signin.py

@@ -58,6 +58,27 @@ Chipotlai Max comes pre-configured with:
 | API Key | `burrito-2026` (literally anything works) |
 | Cost | $0.00 (powered by Chipotle's cloud budget) |
 
+## Also Available: Amazon Rufus
+
+In addition to the Pepper proxy, this fork ships an OpenAI-compatible
+proxy in front of **Amazon's Rufus** shopping assistant. Pick
+`amazon-rufus` in the OpenCode model picker and you get four model IDs:
+
+- `rufus-1` — default (soft-educational rewriter, polite to Amazon's filters)
+- `rufus-1-sk` — Skeleton Key jailbreak (best for code)
+- `rufus-1-jb` — ENI persona override (more aggressive)
+- `rufus-1-c` — chainer (decomposes the request, multiple shots)
+
+Windows users get a one-action launcher:
+
+```powershell
+powershell -NoExit -ExecutionPolicy Bypass -File .\start-chipotlai.ps1
+```
+
+Full guide: [script/README-amazon-rufus.md](script/README-amazon-rufus.md).
+Same TOS-violation / account-ban caveats apply — see the "Honest risk
+section" in that doc before relying on it for anything real.
+
 ## Risks & Legal
 
 - This reverse-engineers Chipotle's production support bot. TOS violation likely.

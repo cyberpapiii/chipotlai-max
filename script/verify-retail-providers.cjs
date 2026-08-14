@@ -13,6 +13,7 @@ const want = [
   ['lowes-mylow', 'mylow-1', 'LOWES_MYLOW_BASE_URL'],
   ['ikea-billie', 'billie-1', 'IKEA_BILLIE_BASE_URL'],
   ['expedia-virtual-agent', 'virtual-agent-1', 'EXPEDIA_VIRTUAL_AGENT_BASE_URL'],
+  ['amazon-rufus', 'rufus-1', 'AMAZON_RUFUS_BASE_URL'],
 ];
 
 for (const [provider, model, env] of want) {
